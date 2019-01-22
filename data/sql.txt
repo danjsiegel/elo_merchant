@@ -1,0 +1,112 @@
+Select card_id, sum(purchase_amount), count(purchase_amount)
+from historical_transactions
+group by card_id
+
+
+
+
+Select count(DISTINCT card_id) from historical_transactions
+
+
+--delete from cat_by_card
+
+/*
+  city_id DONE
+  category_1 DONE
+  category_2 DONE
+  category_3 DONE
+  merchant_category_id DONE
+  merchant_id DONE
+  state_id DONE
+  subsector_id DONE
+
+-- city_id
+Select DISTINCT card_id, city_id, count(city_id) as city_occurrence
+INTO city_by_card 
+from historical_transactions
+where not city_id = -1
+Group by card_id, city_id
+order by city_occurrence DESC
+
+-- state_id
+Select DISTINCT card_id, state_id, count(state_id) as state_occurrence
+INTO state_by_card 
+from historical_transactions
+where not state_id = -1
+Group by card_id, state_id
+order by state_occurrence DESC
+
+-- merchant_id
+Select DISTINCT card_id, merchant_id, count(merchant_id) as merchant_occurrence
+INTO merchant_by_card 
+from historical_transactions
+where not state_id = -1
+Group by card_id, merchant_id
+order by merchant_occurrence DESC
+
+-- merchant_category_id
+Select DISTINCT card_id, merchant_category_id, count(merchant_category_id) as merchant_cat_occurrence
+INTO merchant_cat_by_card 
+from historical_transactions
+where not state_id = -1
+Group by card_id, merchant_category_id
+order by merchant_cat_occurrence DESC
+
+-- category_1
+Select DISTINCT card_id, category_1, count(category_1) as category_1_occurrence
+INTO category_1_by_card 
+from historical_transactions
+where not state_id = -1
+Group by card_id, category_1
+order by category_1_occurrence DESC
+
+-- category_2
+Select DISTINCT card_id, category_2, count(category_2) as category_2_occurrence
+INTO category_2_by_card 
+from historical_transactions
+where not state_id = -1
+Group by card_id, category_2
+order by category_2_occurrence DESC
+
+-- category_3
+Select DISTINCT card_id, category_3, count(category_3) as category_3_occurrence
+INTO category_3_by_card 
+from historical_transactions
+where not state_id = -1
+Group by card_id, category_3
+order by category_3_occurrence DESC
+
+-- subsector_id
+Select DISTINCT card_id, subsector_id, count(subsector_id) as subsector_occurrence
+INTO subsector_by_card 
+from historical_transactions
+where not state_id = -1
+Group by card_id, subsector_id
+order by subsector_occurrence DESC
+
+
+
+*/
+
+
+select * from merchant_cat_by_card
+
+select * from cat_by_card
+order by card_id, city_id, city_occurrence desc
+
+select Distinct card_id, city_id, max(city_occurrence) from cat_by_card
+group by card_id, city_id
+order by card_id, city_id
+
+
+
+
+
+
+
+
+
+
+
+Select distinct feature_1
+from train
